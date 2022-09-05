@@ -46,10 +46,10 @@
                 android:id="@+id/tie_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
                 android:hint="Password"
-                android:singleLine="true"
-                android:inputType="numberPassword"
-                android:background="@color/cardview_shadow_end_color"/>
+                android:inputType="textPassword"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

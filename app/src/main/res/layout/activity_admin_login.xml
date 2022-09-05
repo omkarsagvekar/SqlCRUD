@@ -4,6 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminLogin">
+    tools:context=".AdminLogin"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_adminUser"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="40dp"
+            android:layout_margin="10dp"
+            app:startIconDrawable="@drawable/ic_username"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_adminUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:singleLine="true"
+                android:background="@color/cardview_shadow_end_color"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="40dp"
+            android:layout_margin="10dp"
+            app:startIconDrawable="@drawable/ic_password"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_adminPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="numberPassword"
+                android:maxLength="5"
+                android:singleLine="true"
+                android:background="@color/cardview_shadow_end_color"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_adLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/til_password"
+            android:layout_gravity="center_horizontal"
+            android:text="Login"/>
+
+        <TextView
+            android:id="@+id/tv_attempts"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginTop="5dp"
+            android:text="No of incorrect Attempts:"
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
