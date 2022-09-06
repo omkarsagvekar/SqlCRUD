@@ -21,7 +21,9 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             app:startIconDrawable="@drawable/ic_username"
-            app:endIconMode="clear_text">
+            app:endIconMode="clear_text"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tie_username"
@@ -40,7 +42,9 @@
             android:padding="5dp"
             android:layout_marginTop="20dp"
             app:startIconDrawable="@drawable/ic_password"
-            app:endIconMode="password_toggle">
+            app:endIconMode="password_toggle"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tie_password"
