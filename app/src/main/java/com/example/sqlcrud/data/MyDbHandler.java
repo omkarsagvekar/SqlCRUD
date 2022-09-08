@@ -2,6 +2,7 @@ package com.example.sqlcrud.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.print.PageRange;
@@ -42,4 +43,33 @@ public class MyDbHandler extends SQLiteOpenHelper{
         db.insert(Params.TABLE_NAME, null, values);
         db.close();
     }
+
+    public boolean checkUser(String username) {
+        String[] columns = {Params.KEY_ID};
+        String selection = Params.KEY_NAME + " = ?";
+        String[] selectionArgs = {username};
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(Params.TABLE_NAME, columns, selection, selectionArgs, null,
+                                null, null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        return cursorCount > 0;
+
+    }
+
+    public boolean checkUser(String username, String password) {
+        String[] columns = {Params.KEY_ID};
+        String selection = Params.KEY_NAME + " = ?" +" AND " + Params.KEY_PASSWORD + " = ?";
+        String[] selectionArgs = {username, password};
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(Params.TABLE_NAME, columns, selection, selectionArgs, null,
+                null, null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        return cursorCount > 0;
+
+    }
+
 }
