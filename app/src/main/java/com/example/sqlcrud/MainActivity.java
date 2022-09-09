@@ -3,8 +3,11 @@ package com.example.sqlcrud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,12 +26,25 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout tilUsername, tilPassword;
     private TextInputEditText tieUsername, tiePassword;
     MyDbHandler myDbHandler;
+    public static final String MYSHAREDPREF = "MySharedPref";
+    SharedPreferences sharedPreferences;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         initObj();
         allListeners();
+
+        sharedPreferences = getSharedPreferences(WelcomeLoginPage.MyPREFERENCES, MODE_PRIVATE);
+        boolean hasLoggedIn = sharedPreferences.getBoolean("hasLoggedIn", false);
+        if (hasLoggedIn){
+            startActivity(new Intent(MainActivity.this, WelcomeLoginPage.class));
+            finish();
+        }
+
     }
 
     private void initObj() {
@@ -54,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (myDbHandler.checkUser(tieUsername.getText().toString(), tiePassword.getText().toString())){
+//                    sharedPreferences.edit().putBoolean("hasLoggedIn", true).apply();
                     Toast.makeText(MainActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, WelcomeLoginPage.class));
+                    finish();
+
                 }else{
                     Toast.makeText(MainActivity.this, "wrong username or password", Toast.LENGTH_SHORT).show();
                 }
@@ -63,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         tvCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                emptyInputFields();
+                tieUsername.requestFocus();
                 startActivity(new Intent(MainActivity.this, CreateLogin.class));
             }
         });
@@ -80,13 +102,31 @@ public class MainActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus){
                     tilPassword.setHelperText(validPassword());
+//                    btnLogin.requestFocus();
                 }
+            }
+        });
+
+        tiePassword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if((keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)){
+                    tilPassword.setHelperText(validPassword());
+                    return true;
+
+                }
+                return false;
             }
         });
     }
 
+    private void emptyInputFields() {
+        tieUsername.setText("");
+        tiePassword.setText("");
+    }
+
     private String validUsername(){
-        if (!tieUsername.getText().toString().equals("")){
+        if (tieUsername.getText().toString().equals("")){
             return "Invalid username";
         }
         return null;

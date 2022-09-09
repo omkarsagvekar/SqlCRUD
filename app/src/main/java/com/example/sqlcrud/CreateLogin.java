@@ -2,6 +2,7 @@ package com.example.sqlcrud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.util.Patterns;
@@ -142,6 +143,7 @@ public class CreateLogin extends AppCompatActivity {
             public void onClick(View view) {
                 if (validUsername()== null && validPassword()== null && validEmail()== null && validPhoneNumber()==null){
                     postDataToSqlite();
+
                 }
             }
         });
@@ -157,7 +159,10 @@ public class CreateLogin extends AppCompatActivity {
             myDbHandler.AddUser(users);
             Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
             emptyInputFields();
+            startActivity(new Intent(CreateLogin.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
         }else{
+            username.requestFocus();
             Toast.makeText(this, "Username already exists", Toast.LENGTH_SHORT).show();
         }
     }
