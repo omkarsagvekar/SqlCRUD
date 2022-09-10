@@ -3,7 +3,6 @@ package com.example.sqlcrud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,36 +13,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sqlcrud.data.MyDbHandler;
-import com.example.sqlcrud.params.Params;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity {
 
     private Button btnAdmin, btnLogin;
     private TextView tvCreateUser;
     private TextInputLayout tilUsername, tilPassword;
     private TextInputEditText tieUsername, tiePassword;
     MyDbHandler myDbHandler;
-    public static final String MYSHAREDPREF = "MySharedPref";
     SharedPreferences sharedPreferences;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_loginpage);
 
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         initObj();
         allListeners();
-
-        sharedPreferences = getSharedPreferences(WelcomeLoginPage.MyPREFERENCES, MODE_PRIVATE);
-        boolean hasLoggedIn = sharedPreferences.getBoolean("hasLoggedIn", false);
-        if (hasLoggedIn){
-            startActivity(new Intent(MainActivity.this, WelcomeLoginPage.class));
-            finish();
-        }
 
     }
 
@@ -62,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AdminLogin.class));
+                startActivity(new Intent(LoginPage.this, AdminLogin.class));
             }
         });
 
@@ -70,13 +58,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (myDbHandler.checkUser(tieUsername.getText().toString(), tiePassword.getText().toString())){
-//                    sharedPreferences.edit().putBoolean("hasLoggedIn", true).apply();
-                    Toast.makeText(MainActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, WelcomeLoginPage.class));
+
+                    sharedPreferences = getSharedPreferences(WelcomeLoginPage.MyPREFERENCES, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("hasLoggedIn", true).apply();
+
+                    Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginPage.this, WelcomeLoginPage.class));
                     finish();
 
                 }else{
-                    Toast.makeText(MainActivity.this, "wrong username or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPage.this, "wrong username or password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -85,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 emptyInputFields();
                 tieUsername.requestFocus();
-                startActivity(new Intent(MainActivity.this, CreateLogin.class));
+                startActivity(new Intent(
+                        LoginPage.this, CreateLogin.class));
             }
         });
 

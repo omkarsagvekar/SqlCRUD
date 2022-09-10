@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.KeyListener;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
@@ -159,7 +158,7 @@ public class CreateLogin extends AppCompatActivity {
             myDbHandler.AddUser(users);
             Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
             emptyInputFields();
-            startActivity(new Intent(CreateLogin.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(CreateLogin.this, LoginPage.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }else{
             username.requestFocus();
