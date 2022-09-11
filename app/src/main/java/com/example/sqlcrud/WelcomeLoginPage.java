@@ -24,9 +24,8 @@ public class WelcomeLoginPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeLoginPage.this);
+
                 builder.setMessage("Do you want to exit ?");
                 builder.setTitle("LOGOUT DIALOG");
                 builder.setCancelable(false);
