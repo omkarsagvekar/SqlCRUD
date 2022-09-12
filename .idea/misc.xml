@@ -7,10 +7,13 @@
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/drawable/ic_username.xml" value="0.2775" />
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_admin_login.xml" value="0.26875" />
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_create_login.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_loginpage.xml" value="0.27291666666666664" />
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_splash.xml" value="0.27291666666666664" />
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_splash_screen.xml" value="0.27291666666666664" />
         <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/activity_welcome_login_page.xml" value="0.27291666666666664" />
+        <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/item_user_recycler.xml" value="0.271875" />
+        <entry key="..\:/Android_Workspace/SqlCRUD/app/src/main/res/layout/item_users_list.xml" value="0.27291666666666664" />
       </map>
     </option>
   </component>

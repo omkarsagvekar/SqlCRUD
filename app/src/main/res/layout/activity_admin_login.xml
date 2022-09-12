@@ -21,10 +21,12 @@
             android:layout_marginTop="40dp"
             android:layout_margin="10dp"
             app:startIconDrawable="@drawable/ic_username"
-            app:endIconMode="clear_text">
+            app:endIconMode="clear_text"
+            app:helperText="*"
+            app:helperTextTextColor="@android:color/holo_red_dark">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_adminUser"
+                android:id="@+id/tie_adminUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
@@ -33,21 +35,22 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_password"
+            android:id="@+id/til_adPassword"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginTop="40dp"
             android:layout_margin="10dp"
             app:startIconDrawable="@drawable/ic_password"
-            app:endIconMode="password_toggle">
+            app:endIconMode="password_toggle"
+            app:helperText="*"
+            app:helperTextTextColor="@android:color/holo_red_dark">>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_adminPassword"
+                android:id="@+id/tie_adPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="numberPassword"
                 android:maxLength="5"
                 android:singleLine="true"
                 android:background="@color/cardview_shadow_end_color"/>
@@ -67,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:layout_marginTop="5dp"
-            android:text="No of incorrect Attempts:"
+            android:text="No of incorrect Attempts: 5"
             android:textAlignment="center"
             android:textColor="@color/black"/>
 

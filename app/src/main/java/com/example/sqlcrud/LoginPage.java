@@ -95,7 +95,6 @@ public class LoginPage extends AppCompatActivity {
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus){
                     tilPassword.setHelperText(validPassword());
-//                    btnLogin.requestFocus();
                 }
             }
         });

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SqlCRUD</string>
     <string name="required">Required</string>
+    <string name="Attempt">\"No of incorrect attempts: "</string>
 </resources>
