@@ -1,8 +1,13 @@
 package com.example.sqlcrud;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,8 +15,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sqlcrud.adapter.MainAdapter;
+import com.example.sqlcrud.data.MyDbHandler;
+import com.example.sqlcrud.model.Users;
+import com.example.sqlcrud.params.Params;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
 
 public class AdminLogin extends AppCompatActivity {
     private TextInputLayout tilUsername, tilPassword;
@@ -35,7 +46,6 @@ public class AdminLogin extends AppCompatActivity {
         tiePassword = findViewById(R.id.tie_adPassword);
         btnAdminLogin = findViewById(R.id.btn_adLogin);
         tvNoOfAttempt = findViewById(R.id.tv_attempts);
-
     }
 
     private void allListeners() {
@@ -71,9 +81,10 @@ public class AdminLogin extends AppCompatActivity {
         btnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (tieUsername.getText().toString().equals("admin") && tiePassword.getText().toString().equals("123")) {
+                if (tieUsername.getText().toString().equals("admin") && tiePassword.getText().toString().equals("admin")) {
                     Toast.makeText(AdminLogin.this, "Admin login successfully", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(AdminLogin.this, ));
+                    startActivity(new Intent(AdminLogin.this, ItemUsersList.class));
+                    finish();
                 } else {
                     counter--;
                     Toast.makeText(AdminLogin.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
@@ -95,7 +106,7 @@ public class AdminLogin extends AppCompatActivity {
     }
 
     private String validPassword(){
-        if (tiePassword.getText().toString().equals("") || tiePassword.getText().toString().equals("123")){
+        if (tiePassword.getText().toString().equals("") || !tiePassword.getText().toString().equals("123")){
             return "Invalid password";
         }
         return null;

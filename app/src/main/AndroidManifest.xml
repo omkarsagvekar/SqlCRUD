@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SqlCRUD"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ItemUsersList"
+            android:exported="false" />
         <activity
             android:name=".LoginPage"
             android:exported="false" />

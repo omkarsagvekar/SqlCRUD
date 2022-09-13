@@ -1,16 +1,17 @@
 package com.example.sqlcrud.data;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.print.PageRange;
-
-import androidx.annotation.Nullable;
 
 import com.example.sqlcrud.model.Users;
 import com.example.sqlcrud.params.Params;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDbHandler extends SQLiteOpenHelper{
 
@@ -69,7 +70,41 @@ public class MyDbHandler extends SQLiteOpenHelper{
         cursor.close();
         db.close();
         return cursorCount > 0;
-
     }
 
+    @SuppressLint("Range")
+    public List<Users> getAllUsers(){
+        List<Users> usersList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String select = "SELECT * FROM "+ Params.TABLE_NAME;
+        Cursor cursor = db.rawQuery(select, null);
+        if (cursor.moveToFirst()){
+            do {
+                Users users = new Users();
+                users.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(Params.KEY_ID))));
+                users.setName(cursor.getString(cursor.getColumnIndex(Params.KEY_NAME)));
+                users.setPassword(cursor.getString(cursor.getColumnIndex(Params.KEY_PASSWORD)));
+                users.setEmail(cursor.getString(cursor.getColumnIndex(Params.KEY_EMAIL)));
+                users.setPhoneNum(cursor.getString(cursor.getColumnIndex(Params.KEY_PHONE)));
+                usersList.add(users);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return usersList;
+    }
+    @SuppressLint("Recycle")
+    public void deleteUser(String Username){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM "+ Params.TABLE_NAME +" WHERE "+ Params.KEY_NAME+ " = ? ", new String[]{Username});
+//        if(cursor.getCount() > 0) {
+//            db.delete(Params.TABLE_NAME, Params.KEY_NAME + " = ? ", new String[]{Username});
+//        }
+//        db.close();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Params.TABLE_NAME, Params.KEY_NAME + " =? ",new String[]{Username});
+        db.close();
+    }
 }
