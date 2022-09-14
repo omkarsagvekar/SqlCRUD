@@ -54,7 +54,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:singleLine="true"
-                android:inputType="textPassword"
                 android:background="@color/cardview_shadow_end_color"/>
         </com.google.android.material.textfield.TextInputLayout>
 

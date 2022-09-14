@@ -1,5 +1,6 @@
 package com.example.sqlcrud;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,9 +20,10 @@ import com.example.sqlcrud.params.Params;
 import java.util.ArrayList;
 
 public class ItemUsersList extends AppCompatActivity {
-    ArrayList<Users> arrayList;
-    MainAdapter mainAdapter;
-    Button btnDelete;
+    static ArrayList<Users> arrayList;
+    @SuppressLint("StaticFieldLeak")
+    public static MainAdapter mainAdapter;
+    Button btnDelete, btnUpdate;
     MyDbHandler myDbHandler;
 
     @Override
@@ -51,6 +53,6 @@ public class ItemUsersList extends AppCompatActivity {
         arrayList.addAll(myDbHandler.getAllUsers());
 
         btnDelete = findViewById(R.id.btn_delete);
-
+        btnUpdate = findViewById(R.id.btn_update);
     }
 }

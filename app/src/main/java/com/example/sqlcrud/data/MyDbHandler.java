@@ -107,4 +107,16 @@ public class MyDbHandler extends SQLiteOpenHelper{
         db.delete(Params.TABLE_NAME, Params.KEY_NAME + " =? ",new String[]{Username});
         db.close();
     }
+
+    public void updateUser(String originalUserName, String password, String email, String phoneNum){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Params.KEY_PASSWORD, password);
+        contentValues.put(Params.KEY_EMAIL, email);
+        contentValues.put(Params.KEY_PHONE, phoneNum);
+
+        db.update(Params.TABLE_NAME, contentValues, Params.KEY_ID + " = ? ", new String[]{originalUserName});
+        db.close();
+    }
+
 }

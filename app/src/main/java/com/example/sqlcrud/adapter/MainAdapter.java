@@ -2,6 +2,7 @@ package com.example.sqlcrud.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sqlcrud.R;
+import com.example.sqlcrud.UpdateDialog;
 import com.example.sqlcrud.data.MyDbHandler;
 import com.example.sqlcrud.model.Users;
 
@@ -20,13 +24,14 @@ import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private Context context;
-    ArrayList<Users> arrayList;
+    private final Context context;
+    public static ArrayList<Users> arrayList;
     MyDbHandler myDbHandler;
+
     public MainAdapter(Context context, ArrayList<Users> arrayList) {
         myDbHandler = new MyDbHandler(context);
         this.context = context;
-        this.arrayList = arrayList;
+        MainAdapter.arrayList = arrayList;
     }
 
     @NonNull
@@ -52,6 +57,23 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 Toast.makeText(context, "user Deleted Successfully!!", Toast.LENGTH_SHORT).show();
             }
         });
+        holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentActivity activity = (FragmentActivity)(context);
+                FragmentManager fm = activity.getSupportFragmentManager();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", arrayList.get(position).getName());
+                bundle.putString("password", arrayList.get(position).getPassword());
+                bundle.putString("email", arrayList.get(position).getEmail());
+                bundle.putString("phoneNum", arrayList.get(position).getPhoneNum());
+                bundle.putString("position", String.valueOf(position));
+                UpdateDialog updateDialog = new UpdateDialog();
+                updateDialog.setArguments(bundle);
+                updateDialog.show(fm, "Dialog Fragment");
+
+            }
+        });
     }
 
     @Override
@@ -60,8 +82,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView username, password, email, phoneNo;
-        private Button btnDelete;
+        private final TextView username;
+        private final TextView password;
+        private final TextView email;
+        private final TextView phoneNo;
+        private final Button btnDelete;
+        private final Button btnUpdate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +96,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             email = itemView.findViewById(R.id.tv_email);
             phoneNo = itemView.findViewById(R.id.tv_phoneNum);
             btnDelete = itemView.findViewById(R.id.btn_delete);
+            btnUpdate = itemView.findViewById(R.id.btn_update);
+
         }
+    }
+    public static void notifyDataChanged(){
+        MainAdapter.notifyDataChanged();
     }
 }
