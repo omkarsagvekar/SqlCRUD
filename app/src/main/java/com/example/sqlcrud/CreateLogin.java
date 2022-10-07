@@ -43,7 +43,6 @@ public class CreateLogin extends AppCompatActivity {
         emailId = findViewById(R.id.tie_createEmail);
         phoneNumber = findViewById(R.id.tie_createPhoneNum);
         btnRegister = findViewById(R.id.btn_register);
-        btnRegister.setEnabled(false);
 
         myDbHandler = new MyDbHandler(CreateLogin.this);
         users = new Users();
@@ -58,7 +57,7 @@ public class CreateLogin extends AppCompatActivity {
                 }
             }
         });
-
+/*
         username.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -70,7 +69,7 @@ public class CreateLogin extends AppCompatActivity {
                 return false;
             }
         });
-
+*/
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -80,7 +79,7 @@ public class CreateLogin extends AppCompatActivity {
                 }
             }
         });
-
+/*
         password.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -92,6 +91,7 @@ public class CreateLogin extends AppCompatActivity {
                 return false;
             }
         });
+*/
 
         emailId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -102,6 +102,7 @@ public class CreateLogin extends AppCompatActivity {
             }
         });
 
+        /*
         emailId.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -113,6 +114,16 @@ public class CreateLogin extends AppCompatActivity {
                 return false;
             }
         });
+        */
+//        tilphoneNumber.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+//                if (i == 10){
+//
+//                }
+//                return false;
+//            }
+//        });
 
         phoneNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -125,6 +136,7 @@ public class CreateLogin extends AppCompatActivity {
             }
 
         });
+/*
         phoneNumber.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -136,7 +148,7 @@ public class CreateLogin extends AppCompatActivity {
                 return false;
             }
         });
-
+*/
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

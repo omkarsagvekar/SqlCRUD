@@ -30,7 +30,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public MainAdapter(Context context, ArrayList<Users> arrayList) {
         myDbHandler = new MyDbHandler(context);
-        this.context = context;
+            this.context = context;
         MainAdapter.arrayList = arrayList;
     }
 

@@ -94,6 +94,7 @@ public class MyDbHandler extends SQLiteOpenHelper{
         db.close();
         return usersList;
     }
+
     @SuppressLint("Recycle")
     public void deleteUser(String Username){
 //        SQLiteDatabase db = this.getWritableDatabase();
